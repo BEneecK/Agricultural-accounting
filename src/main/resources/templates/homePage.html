@@ -17,10 +17,12 @@
                 <div class="col">
                     <div class="card mb-4 rounded-3 shadow-sm">
                         <div class="card-header py-3">
-
+                            <strong>Пользователи</strong>
                         </div>
                         <div class="card-body">
-
+                            <div th:each="el : ${users}">
+                                <h3 th:text="${el.firstName}"/>
+                            </div>
                         </div>
                     </div>
                 </div>
