@@ -11,7 +11,7 @@ public class User {
     private Long id;
     @Column(name = "first_name")
     private String firstName;
-    @Column(name = "second_name")
+    @Column(name = "last_name")
     private String lastName;
     @Column(name = "email")
     private String email;
@@ -21,8 +21,9 @@ public class User {
     private Double status;
     @Column(name = "is_banned")
     private boolean isBanned;
-    @Column(name = "user_roles_id")
-    private int role;
+    @ManyToOne
+    @JoinColumn(name="user_roles_id")
+    private UserRole userRole;
 
     public Long getId() {
         return id;
@@ -80,11 +81,19 @@ public class User {
         isBanned = banned;
     }
 
-    public int getRole() {
+   /* public int getRole() {
         return role;
     }
 
     public void setRole(int role) {
         this.role = role;
+    }*/
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 }

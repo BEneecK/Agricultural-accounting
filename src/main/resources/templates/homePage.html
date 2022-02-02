@@ -21,7 +21,7 @@
                         </div>
                         <div class="card-body">
                             <div th:each="el : ${users}">
-                                <h3 th:text="${el.firstName}"/>
+                                <h3 th:text="${el.lastName} + ' ' + ${el.userRole.role}"/>
                             </div>
                         </div>
                     </div>
