@@ -1,23 +1,28 @@
 package by.bsuir.web.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class User {
-
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "second_name")
     private String lastName;
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
-    private String status;
+    @Column(name = "status")
+    private Double status;
+    @Column(name = "is_banned")
     private boolean isBanned;
-    private String role;
+    @Column(name = "user_roles_id")
+    private int role;
 
     public Long getId() {
         return id;
@@ -59,11 +64,11 @@ public class User {
         this.password = password;
     }
 
-    public String getStatus() {
+    public Double getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Double status) {
         this.status = status;
     }
 
@@ -75,11 +80,11 @@ public class User {
         isBanned = banned;
     }
 
-    public String getRole() {
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
 }
