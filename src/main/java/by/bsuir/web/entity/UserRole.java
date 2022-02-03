@@ -1,9 +1,9 @@
 package by.bsuir.web.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user_roles")
@@ -13,6 +13,9 @@ public class UserRole {
     private Long id;
     @Column(name = "role")
     private String role;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_roles_id")
+    private List<User> users = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -28,5 +31,13 @@ public class UserRole {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

@@ -1,6 +1,8 @@
 package by.bsuir.web.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -24,6 +26,9 @@ public class User {
     @ManyToOne
     @JoinColumn(name="user_roles_id")
     private UserRole userRole;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "users_id")
+    private List<Review> reviews = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -81,19 +86,19 @@ public class User {
         isBanned = banned;
     }
 
-   /* public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
-    }*/
-
     public UserRole getUserRole() {
         return userRole;
     }
 
     public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }
