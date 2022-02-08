@@ -7,9 +7,10 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
-    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id",unique=true, nullable = false)
     private Long id;
     @Column(name = "first_name")
     private String firstName;
@@ -23,12 +24,34 @@ public class User {
     private Double status;
     @Column(name = "is_banned")
     private boolean isBanned;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="user_roles_id")
     private UserRole userRole;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "users_id")
     private List<Review> reviews = new ArrayList<>();
+
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+
+    }
+
+    public User(String firstName, String lastName, String email, String password, Double status, boolean isBanned, UserRole userRole, List<Review> reviews) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.isBanned = isBanned;
+        this.userRole = userRole;
+        this.reviews = reviews;
+    }
 
     public Long getId() {
         return id;

@@ -9,13 +9,22 @@ import java.util.Set;
 @Table(name = "user_roles")
 public class UserRole {
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id",unique=true, nullable = false)
     private Long id;
     @Column(name = "role")
     private String role;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_roles_id")
     private List<User> users = new ArrayList<>();
+
+    public UserRole() {
+    }
+
+    public UserRole(String role) {
+        this.role = role;
+    }
 
     public Long getId() {
         return id;
